@@ -1,0 +1,142 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion "30.0.0"
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'RnDdepartment'
+            keyPassword 'rndpcs1917'
+            storePassword 'rndpcs1917'
+//            storeFile file('D:/Boys/AndroidStudio/bni/bni_debit_nac_tle/pcs_rnd_release.jks')
+//            storeFile file('D:/PCSIndonesia/AndroidProject/BRI/EDCBRI/pcs_rnd_release.jks')
+            storeFile file('../pcs_rnd_release.jks')
+        }
+    }
+
+    defaultConfig {
+        applicationId "id.co.pcsindonesia.ia.diagnostic"
+        minSdkVersion 19
+        targetSdkVersion 33
+        versionCode 58 //add parameter
+        versionName '1.2.1'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+        multiDexEnabled true
+
+        buildConfigField "String", "ENC_KEY", keystoreProperties["ENC_KEY"]
+        buildConfigField "String", "ENC_SALT", keystoreProperties["ENC_SALT"]
+        buildConfigField "String", "KEY_FAC", keystoreProperties["KEY_FAC"]
+        buildConfigField "String", "KEY_MODE", keystoreProperties["KEY_MODE"]
+        buildConfigField "String", "ENC", keystoreProperties["ENC"]
+        buildConfigField "Integer", "APP_ITR", keystoreProperties["APP_ITR"]
+        buildConfigField "Integer", "ENC_LENGTH", keystoreProperties["ENC_LENGTH"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'commons-codec:commons-codec:1.10'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
+    implementation "org.bouncycastle:bcprov-jdk16:1.46", "org.bouncycastle:bcpg-jdk16:1.46", "org.bouncycastle:bcmail-jdk16:1.46", "org.bouncycastle:bctsp-jdk16:1.46"
+    implementation files('libs\\PayLib-release-1.4.59-sources.jar')
+
+
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // retrofit, gson
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    //Z90
+    implementation files('libs/SmartPosAndroidSDK.jar')
+
+    //PAX
+    implementation files('libs/NeptuneLiteApi_V3.01.00_20181017.jar')
+
+    //SUNMI
+    implementation files('libs/core-3.3.0.jar')
+
+
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.sunmi:sunmiui:1.1.27'
+    implementation 'com.sunmi:printerlibrary:1.0.7'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation files('libs/PayLib-release-1.4.59.aar')
+    implementation files('libs/PayLib-release-1.4.59-sources.jar')
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "org.bouncycastle:bcprov-jdk16:1.46", "org.bouncycastle:bcpg-jdk16:1.46", "org.bouncycastle:bcmail-jdk16:1.46", "org.bouncycastle:bctsp-jdk16:1.46"
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation "org.jetbrains.anko:anko:0.10.8"
+    implementation "org.jetbrains.anko:anko-sqlite:0.7.0"
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
+            // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+            //'org.bouncycastle:bcprov-jdk15on:1.70',
+            'io.jsonwebtoken:jjwt-jackson:0.11.5' // or 'io.jsonwebtoken:jjwt-gson:0.11.5' for gson
+    implementation('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
+    implementation 'me.relex:circleindicator:2.1.6'
+}
+repositories {
+    mavenCentral()
+}

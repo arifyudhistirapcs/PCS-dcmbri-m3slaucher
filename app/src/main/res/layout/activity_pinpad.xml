@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/layoutpin"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_marginBottom="70dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_pin_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PIN Verification"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"/>
+
+    <com.alimuzaffar.lib.pin.PinEntryEditText
+        android:id="@+id/pinpad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:inputType="numberPassword"
+        android:maxEms="1"
+        android:maxLength="6"
+        android:digits="1234567890"
+        app:pinLineColors="@color/black"/>
+
+</LinearLayout>

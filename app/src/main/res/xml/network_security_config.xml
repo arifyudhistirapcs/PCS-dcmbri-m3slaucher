@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">bbril.xt.pcsindonesia.co.id</domain>
+<!--        <pin-set>-->
+<!--            <pin digest="SHA-256">4IWgrIy+mxOhAQGFpfmEG4NeoqDUyN0McZDLt7f0vK8=</pin>-->
+<!--            <pin digest="SHA-256">oYdI/bMchKevqYoMiFLxjK+KA9cG8jnsy+3LwztZ/ho=</pin>-->
+<!--        </pin-set>-->
+<!--        <trustkit-config enforcePinning="true" />-->
+    </domain-config>
+<!--    <base-config>-->
+<!--        <trust-anchors>-->
+<!--            <certificates src="@raw/my_ca"/>-->
+<!--        </trust-anchors>-->
+<!--    </base-config>-->
+</network-security-config>

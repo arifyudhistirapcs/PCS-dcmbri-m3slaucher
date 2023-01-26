@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.co.dcmbri.com.example.pcsindonesia.ia.dcmbri.MainActivity">
+    <item android:id="@+id/about_app"
+        android:title="About App"/>
+
+    <item android:id="@+id/about_pcs"
+        android:title="About PCS"/>
+
+<!--    <item android:id="@+id/web_view"-->
+<!--        android:title="web view"/>-->
+
+</menu>
