@@ -33,16 +33,12 @@ class ListAppAdapter(val context: Context, val listApp: ArrayList<AppInfo>): Rec
         holder.icon.setImageDrawable(item.icon)
         holder.name.text = item.label
         holder.ll.setOnClickListener {
-            if (item.packageName.toString() != "id.co.bri.brilinkmobile") {
-                 if (item.packageName.toString() == "printdiag") {
-                    context.startActivity(Intent(context, MainActivity::class.java))
-            } else {
-                 val intent = context.packageManager.getLaunchIntentForPackage(item.packageName.toString())
-                 context.startActivity(intent)
-                }
-            }
-            else{
-                (context as BaseActivity).goPassword(GlobalHelper.BRILINK)
+
+        if (item.packageName.toString() == "printdiag") {
+                context.startActivity(Intent(context, MainActivity::class.java))
+        } else {
+             val intent = context.packageManager.getLaunchIntentForPackage(item.packageName.toString())
+             context.startActivity(intent)
             }
         }
     }
